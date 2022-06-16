@@ -6,34 +6,50 @@ namespace Reverse_String
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Input a string");
-            string input = Console.ReadLine();
-            Console.WriteLine("How far to shift?");
-            int shift = 0;
-            bool valid = false;
-            string newstring = "";
-            string input2 = "";
-            while(!valid){
-                input2 = Console.ReadLine();
-                if(input2 == "quit"){
-                    valid = true;
+            bool retry = true;
+            while(retry){
+                Console.WriteLine("Welcome to String Shift!\n-----------------------------------");
+                
+                Console.WriteLine("Input a string:");
+                string input = Console.ReadLine();
+                Console.WriteLine("\nHow far to shift?");
+                int shift = 0;
+                bool valid = false;
+                string newstring = "";
+                string input2 = "";
+                while(!valid){
+                    input2 = Console.ReadLine();
+                    if(input2 == "quit"){
+                        valid = true;
+                        retry = false;
+                    }
+                    else if(Int32.TryParse(input2, out shift)){
+                        Console.WriteLine("\nShifted String:");
+                        newstring = shiftstring(input, shift);
+                        Console.WriteLine(newstring);
+                        valid = true;
+                    }
+                    else{
+                        Console.WriteLine("Not Valid! Please enter an integer!");
+                    }
                 }
-                else if(Int32.TryParse(input2, out shift)){
-                    newstring = shiftstring(input, shift);
-                    Console.WriteLine(newstring);
-                    valid = true;
+                Console.WriteLine("\nShift another string(Enter no to quit, anything else to continue)?");
+                string cont = Console.ReadLine();
+                if(cont.ToLower() == "no"){
+                    retry = false;
                 }
-                else{
-                    Console.WriteLine("Not Valid! Please enter an integer!");
-                }
+
             }
-            
+                
 
         }
 
         public static string shiftstring(string original, int shift){
-                int modshift = Math.Abs(shift%original.Length);
-                int negativeshift = original.Length - modshift;
+            if(original.Length == 0){
+                return original;
+            }
+            int modshift = Math.Abs(shift%original.Length);
+            int negativeshift = original.Length - modshift;
             if(shift >= 0){
 
                 string front = original.Substring(0, negativeshift);
