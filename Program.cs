@@ -32,10 +32,19 @@ namespace Reverse_String
         }
 
         public static string shiftstring(string original, int shift){
-            int negativeshift = original.Length - shift;
-            string front = original.Substring(0, negativeshift);
-            string tail = original.Substring(negativeshift, shift );
-            return tail+front;
+                int modshift = Math.Abs(shift%original.Length);
+                int negativeshift = original.Length - modshift;
+            if(shift >= 0){
+
+                string front = original.Substring(0, negativeshift);
+                string tail = original.Substring(negativeshift, modshift);
+                return tail+front;
+            }
+            else{
+                string lead = original.Substring(0, modshift);
+                string end = original.Substring(modshift, (original.Length-modshift));
+                return end+lead;
+            }
 
         } 
     }
