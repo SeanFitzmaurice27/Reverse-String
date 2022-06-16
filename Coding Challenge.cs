@@ -6,6 +6,25 @@ namespace Reverse_String
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome!\n-------------------------------\nWould you like to:\n1.Above Below\n2.Rotate String\n3.Quit");
+            string input = Console.ReadLine();
+
+            if(input ==  "1" || input.ToLower().StartsWith("above") ){
+                AboveBelow();
+            }else if(input == "2" || input.ToLower().StartsWith("rotate") ){
+                StringRoation();
+            }else if(input == "3" || input.ToLower().StartsWith("quit")){
+
+            }else{
+                Console.WriteLine("Not a valid input!");
+            }
+                        
+
+        }
+        public static void AboveBelow(){
+            
+        }
+        public static void StringRoation(){
             bool retry = true;
             while(retry){
                 Console.WriteLine("Welcome to String Shift!\n-----------------------------------");
@@ -40,8 +59,6 @@ namespace Reverse_String
                 }
 
             }
-                
-
         }
 
         public static string shiftstring(string original, int shift){
